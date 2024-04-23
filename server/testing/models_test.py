@@ -1,5 +1,4 @@
 import pytest
-from sqlalchemy.exc import IntegrityError
 from app import app
 from models import db, Author, Post
 import logging
@@ -44,8 +43,8 @@ class TestAuthor:
         '''requires each phone number to be exactly ten digits.'''
 
         with app.app_context():
+            # Ensure the app context is set up correctly
 
-                
             with pytest.raises(ValueError):
                 LOGGER.info('testing short phone number')
                 author = Author(name="Jane Author", phone_number="3311")
